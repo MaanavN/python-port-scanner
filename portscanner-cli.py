@@ -44,17 +44,17 @@ while True:
 		break
 	except ValueError:
 		p1 = int(input("Enter the starting port: "))
-  except KeyboardInterrupt:
-    sys.exit()
+	except KeyboardInterrupt:
+		sys.exit()
 
 while True:
 	try:
 		p2 = int(input("Enter the ending port: "))
 		break
 	except ValueError:
-		p2 = int(input("Enter the ending port: "))\
-  except KeyboardInterrupt:
-    sys.exit()
+		p2 = int(input("Enter the ending port: "))
+	except KeyboardInterrupt:
+		sys.exit()
 
 
 
