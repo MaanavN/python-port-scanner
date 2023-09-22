@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Port Scanner</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: white;
+        }
+        form {
+            text-align: center;
+        }
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+        }
+        .input-container label {
+            font-weight: bold;
+        }
+        .input-container input {
+            padding: 10px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            width: 93%;
+            background-color: transparent;
+            color: white;
+        }
+        .port-input-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .port-input-container .port-input {
+            width: 48%;
+            margin-right: 10px; /* Add margin between the port boxes */
+        }
+        .input-container input:focus::placeholder {
+            color: transparent;
+        }
+        .scan-button {
+            width: 60%;
+            padding: 10px;
+            background: linear-gradient(to right, purple, pink);
+            color: black;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .scan-button:hover {
+            background: linear-gradient(to right, pink, purple);
+        }
+        .result {
+          text-align: left;
+          margin-right: 141px
+        }
+    </style>
+</head>
+<body>
+    <h1>Port Scanner</h1>
+    <form method="POST">
+        <div class="input-container">
+            <input type="text" name="ip_addr" required class="ip-input" placeholder="Enter an IP Address">
+        </div>
+        <div class="input-container port-input-container">
+            <input type="text" name="start_port" required class="port-input" placeholder="Start Port">
+            <input type="text" name="end_port" required class="port-input" placeholder="End Port">
+        </div>
+        <input type="submit" value="Scan" class="scan-button">
+    </form>
+
+
+    {% if open_ports is defined %}
+    <div class="result">
+    <h2 required class="result">Scan Results</h2>
+    <p>Scanning target: {{ target }}</p>
+    <p>Time started: {{ now }}</p>
+    <p>
+        {% for port in open_ports %}
+        Port {{ port }} is open<br>
+        {% endfor %}
+    </p>
+    </div>
+    {% endif %}
+</body>
+</html>
